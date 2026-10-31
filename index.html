@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cheng Bank Demo</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#080a0d;
+  color:#f5f1e8;
+  font-family:Arial,sans-serif;
+}
+header{
+  padding:22px;
+  background:#11151b;
+  border-bottom:1px solid #b89443;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.brand{color:#e4bd62;font-size:25px;font-weight:bold}
+.demo{font-size:11px;color:#e4bd62}
+.notice{
+  margin:15px;
+  padding:12px;
+  background:#302817;
+  border:1px solid #a8873d;
+  border-radius:8px;
+  color:#f4d994;
+  text-align:center;
+  font-size:12px;
+}
+main{max-width:850px;margin:auto;padding:15px}
+.welcome{color:#aaa;margin-top:25px}
+.balance{
+  background:linear-gradient(135deg,#25231d,#11151b);
+  border:1px solid #b89443;
+  border-radius:15px;
+  padding:25px;
+  margin:20px 0;
+}
+.balance small{color:#c5b88e}
+.amount{
+  color:#e8c66f;
+  font-size:38px;
+  font-weight:bold;
+  margin:14px 0;
+}
+.card{
+  background:linear-gradient(120deg,#29251c,#111);
+  border:1px solid #b89443;
+  border-radius:14px;
+  padding:22px;
+  margin:20px 0;
+}
+.card strong{color:#e6c36d}
+.card-number{font-size:21px;letter-spacing:3px;margin:22px 0}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.action{
+  background:#171c23;
+  border:1px solid #38332a;
+  border-radius:10px;
+  padding:18px;
+  text-align:center;
+}
+.action span{display:block;color:#e5c36d;font-size:23px;margin-bottom:8px}
+h3{color:#e5c36d}
+.transactions{
+  background:#12171e;
+  border-radius:12px;
+  padding:18px;
+  margin-top:22px;
+}
+.transaction{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  border-bottom:1px solid #30343a;
+  padding:14px 0;
+  font-size:14px;
+}
+.demo-tag{color:#d6b45e;font-size:11px}
+button{
+  background:#c49b45;
+  color:#111;
+  border:0;
+  border-radius:7px;
+  padding:12px 18px;
+  font-weight:bold;
+  cursor:pointer;
+}
+footer{
+  text-align:center;
+  color:#888;
+  font-size:12px;
+  padding:25px;
+}
+#localTime{color:#e6c36d}
+@media(max-width:450px){
+  .amount{font-size:32px}
+  .card-number{font-size:17px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">CHENG BANK</div>
+  <div class="demo">DEMO EDITION</div>
+</header>
+
+<div class="notice">
+  FICTIONAL DEMONSTRATION ONLY — NOT A REAL BANK.
+  No real accounts, deposits or transfers.
+</div>
+
+<main>
+  <div class="welcome">Welcome to Cheng Bank Demo</div>
+  <p>Account holder: Cheng Er34</p>
+  <p>Local time: <span id="localTime">Loading...</span></p>
+  <p id="timezone" class="demo-tag"></p>
+
+  <section class="balance">
+    <small>DEMO ACCOUNT BALANCE</small>
+    <div class="amount">$1,000,000.00</div>
+    <small>Fictional sample balance</small>
+  </section>
+
+  <section class="card">
+    <strong>CHENG BANK — DEMO CARD</strong>
+    <div class="card-number">•••• •••• •••• 8963</div>
+    <small>DEMO CARD ONLY</small>
+    <p>Card holder: Cheng Er34</p>
+    <p>Expiry: 08/2028</p>
+  </section>
+
+  <h3>Quick services</h3>
+  <div class="grid">
+    <div class="action"><span>↔</span>Payments</div>
+    <div class="action"><span>▣</span>Wallet</div>
+    <div class="action"><span>▤</span>Bills</div>
+    <div class="action"><span>⚙</span>Profile</div>
+  </div>
+
+  <section class="transactions">
+    <h3>Sample transactions</h3>
+    <div class="transaction">
+      <span>Demo deposit</span><strong>+$2,500.00</strong>
+    </div>
+    <div class="transaction">
+      <span>Demo shopping</span><strong>-$120.00</strong>
+    </div>
+    <div class="transaction">
+      <span>Demo payment</span><strong>-$350.00</strong>
+    </div>
+    <p class="demo-tag">All transactions are fictional examples.</p>
+  </section>
+
+  <p style="text-align:center;margin-top:25px">
+    <button onclick="alert('This is a demonstration. No real card exists.')">
+      Demo card information
+    </button>
+  </p>
+</main>
+
+<footer>
+  Cheng Bank Demo © 2026<br>
+  Independent fictional project. Not a financial institution.
+</footer>
+
+<script>
+function updateLocalTime(){
+  const now = new Date();
+  document.getElementById("localTime").textContent =
+    now.toLocaleString();
+  document.getElementById("timezone").textContent =
+    "Your device timezone: " +
+    Intl.DateTimeFormat().resolvedOptions().timeZone;
+}
+updateLocalTime();
+setInterval(updateLocalTime,1000);
+</script>
+
+</body>
+</html>
