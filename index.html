@@ -4,189 +4,341 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cheng Bank Demo</title>
+<title>CNY Wallet</title>
+
 <style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  background:#080a0d;
-  color:#f5f1e8;
-  font-family:Arial,sans-serif;
+* {
+  box-sizing: border-box;
 }
-header{
-  padding:22px;
-  background:#11151b;
-  border-bottom:1px solid #b89443;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+
+body {
+  margin: 0;
+  background: #080808;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
 }
-.brand{color:#e4bd62;font-size:25px;font-weight:bold}
-.demo{font-size:11px;color:#e4bd62}
-.notice{
-  margin:15px;
-  padding:12px;
-  background:#302817;
-  border:1px solid #a8873d;
-  border-radius:8px;
-  color:#f4d994;
-  text-align:center;
-  font-size:12px;
+
+.gold {
+  color: #d8b45b;
 }
-main{max-width:850px;margin:auto;padding:15px}
-.welcome{color:#aaa;margin-top:25px}
-.balance{
-  background:linear-gradient(135deg,#25231d,#11151b);
-  border:1px solid #b89443;
-  border-radius:15px;
-  padding:25px;
-  margin:20px 0;
+
+.login-screen {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 22px;
 }
-.balance small{color:#c5b88e}
-.amount{
-  color:#e8c66f;
-  font-size:38px;
-  font-weight:bold;
-  margin:14px 0;
+
+.login-box {
+  width: 100%;
+  max-width: 420px;
+  background: #151515;
+  border: 1px solid #a8873d;
+  border-radius: 18px;
+  padding: 30px 24px;
+  text-align: center;
 }
-.card{
-  background:linear-gradient(120deg,#29251c,#111);
-  border:1px solid #b89443;
-  border-radius:14px;
-  padding:22px;
-  margin:20px 0;
+
+.logo {
+  color: #e3bd63;
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
-.card strong{color:#e6c36d}
-.card-number{font-size:21px;letter-spacing:3px;margin:22px 0}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+
+.subtitle {
+  color: #aaa;
+  margin: 12px 0 28px;
 }
-.action{
-  background:#171c23;
-  border:1px solid #38332a;
-  border-radius:10px;
-  padding:18px;
-  text-align:center;
+
+input {
+  width: 100%;
+  padding: 15px;
+  margin: 9px 0;
+  border: 1px solid #66552f;
+  border-radius: 9px;
+  background: #090909;
+  color: white;
+  font-size: 16px;
 }
-.action span{display:block;color:#e5c36d;font-size:23px;margin-bottom:8px}
-h3{color:#e5c36d}
-.transactions{
-  background:#12171e;
-  border-radius:12px;
-  padding:18px;
-  margin-top:22px;
+
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 9px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: bold;
 }
-.transaction{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  border-bottom:1px solid #30343a;
-  padding:14px 0;
-  font-size:14px;
+
+.login-button {
+  width: 100%;
+  margin-top: 15px;
+  background: linear-gradient(120deg, #f0d58b, #ad8433);
+  color: #111;
 }
-.demo-tag{color:#d6b45e;font-size:11px}
-button{
-  background:#c49b45;
-  color:#111;
-  border:0;
-  border-radius:7px;
-  padding:12px 18px;
-  font-weight:bold;
-  cursor:pointer;
+
+.small-note {
+  color: #999;
+  font-size: 12px;
+  margin-top: 22px;
 }
-footer{
-  text-align:center;
-  color:#888;
-  font-size:12px;
-  padding:25px;
+
+#dashboard {
+  display: none;
+  max-width: 850px;
+  margin: auto;
+  padding: 18px;
 }
-#localTime{color:#e6c36d}
-@media(max-width:450px){
-  .amount{font-size:32px}
-  .card-number{font-size:17px}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5px;
+  border-bottom: 1px solid #705b30;
+}
+
+header .logo {
+  font-size: 23px;
+}
+
+.logout {
+  background: #292929;
+  color: #e3bd63;
+  border: 1px solid #705b30;
+}
+
+.welcome {
+  color: #aaa;
+  margin: 28px 0 18px;
+}
+
+.balance {
+  background: linear-gradient(135deg, #29251b, #111111);
+  border: 1px solid #a8873d;
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+
+.balance-label {
+  color: #c5b88e;
+  font-size: 14px;
+}
+
+.amount {
+  color: #f0d58b;
+  font-size: 34px;
+  font-weight: bold;
+  margin: 15px 0;
+  overflow-wrap: anywhere;
+}
+
+.currency {
+  color: #aaa;
+  font-size: 13px;
+}
+
+.card {
+  background: linear-gradient(120deg, #29251c, #111);
+  border: 1px solid #a8873d;
+  border-radius: 14px;
+  padding: 22px;
+  margin: 20px 0;
+}
+
+.card-number {
+  font-size: 21px;
+  letter-spacing: 3px;
+  margin: 24px 0;
+}
+
+h3 {
+  color: #e3bd63;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.action {
+  background: #171717;
+  border: 1px solid #66552f;
+  border-radius: 10px;
+  padding: 20px 8px;
+  color: #f0d58b;
+}
+
+.transactions {
+  background: #151515;
+  border: 1px solid #444;
+  border-radius: 12px;
+  padding: 18px;
+  margin-top: 22px;
+}
+
+.transaction {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 15px 0;
+  border-bottom: 1px solid #333;
+  font-size: 14px;
+}
+
+footer {
+  text-align: center;
+  color: #777;
+  font-size: 12px;
+  padding: 28px 10px;
+}
+
+@media(max-width:450px) {
+  .amount {
+    font-size: 28px;
+  }
 }
 </style>
 </head>
+
 <body>
 
-<header>
-  <div class="brand">CHENG BANK</div>
-  <div class="demo">DEMO EDITION</div>
-</header>
+<section class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="logo">CNY WALLET</div>
+    <p class="subtitle">Your digital wallet</p>
 
-<div class="notice">
-  FICTIONAL DEMONSTRATION ONLY — NOT A REAL BANK.
-  No real accounts, deposits or transfers.
-</div>
+    <form id="loginForm">
+      <input
+        type="text"
+        id="username"
+        placeholder="Username"
+        autocomplete="off"
+        required
+      >
 
-<main>
-  <div class="welcome">Welcome to Cheng Bank Demo</div>
-  <p>Account holder: Cheng Er34</p>
-  <p>Local time: <span id="localTime">Loading...</span></p>
-  <p id="timezone" class="demo-tag"></p>
+      <input
+        type="password"
+        id="password"
+        placeholder="Practice password"
+        autocomplete="off"
+        required
+      >
+
+      <button class="login-button" type="submit">
+        LOGIN
+      </button>
+    </form>
+
+    <p class="small-note">
+      Independent sample wallet · Practice interface
+    </p>
+  </div>
+</section>
+
+<section id="dashboard">
+
+  <header>
+    <div class="logo">CNY WALLET</div>
+    <button class="logout" onclick="logout()">LOG OUT</button>
+  </header>
+
+  <div class="welcome">
+    Welcome to CNY Wallet
+  </div>
 
   <section class="balance">
-    <small>DEMO ACCOUNT BALANCE</small>
-    <div class="amount">$1,000,000.00</div>
-    <small>Fictional sample balance</small>
+    <div class="balance-label">WALLET BALANCE</div>
+    <div class="amount">¥6,653,800.00</div>
+    <div class="currency">Chinese Yuan · CNY</div>
   </section>
 
   <section class="card">
-    <strong>CHENG BANK — DEMO CARD</strong>
-    <div class="card-number">•••• •••• •••• 8963</div>
-    <small>DEMO CARD ONLY</small>
-    <p>Card holder: Cheng Er34</p>
-    <p>Expiry: 08/2028</p>
+    <strong class="gold">CNY WALLET CARD</strong>
+    <div class="card-number">•••• &nbsp; •••• &nbsp; •••• &nbsp; 8963</div>
+    <small> SAMPLE CARD · PAYMENT CARD</small>
   </section>
 
-  <h3>Quick services</h3>
+  <h3>Quick Services</h3>
+
   <div class="grid">
-    <div class="action"><span>↔</span>Payments</div>
-    <div class="action"><span>▣</span>Wallet</div>
-    <div class="action"><span>▤</span>Bills</div>
-    <div class="action"><span>⚙</span>Profile</div>
+    <button class="action" onclick="demoAction('Payments')">
+      Payments
+    </button>
+
+    <button class="action" onclick="demoAction('Wallet')">
+      Wallet
+    </button>
+
+    <button class="action" onclick="demoAction('Bills')">
+      Bills
+    </button>
+
+    <button class="action" onclick="demoAction('Profile')">
+      Profile
+    </button>
   </div>
 
   <section class="transactions">
-    <h3>Sample transactions</h3>
+    <h3>Sample Transactions</h3>
+
     <div class="transaction">
-      <span>Demo deposit</span><strong>+$2,500.00</strong>
+      <span>Sample deposit</span>
+      <strong class="gold">+¥2,500.00</strong>
     </div>
+
     <div class="transaction">
-      <span>Demo shopping</span><strong>-$120.00</strong>
+      <span>Sample shopping</span>
+      <strong>−¥120.00</strong>
     </div>
+
     <div class="transaction">
-      <span>Demo payment</span><strong>-$350.00</strong>
+      <span>Sample payment</span>
+      <strong>−¥350.00</strong>
     </div>
-    <p class="demo-tag">All transactions are fictional examples.</p>
+
+    <p class="small-note">
+      All displayed transactions are examples.
+    </p>
   </section>
 
-  <p style="text-align:center;margin-top:25px">
-    <button onclick="alert('This is a demonstration. No real card exists.')">
-      Demo card information
-    </button>
-  </p>
-</main>
+  <footer>
+    CNY Wallet · Independent sample interface
+  </footer>
 
-<footer>
-  Cheng Bank Demo © 2026<br>
-  Independent fictional project. Not a financial institution.
-</footer>
+</section>
 
 <script>
-function updateLocalTime(){
-  const now = new Date();
-  document.getElementById("localTime").textContent =
-    now.toLocaleString();
-  document.getElementById("timezone").textContent =
-    "Your device timezone: " +
-    Intl.DateTimeFormat().resolvedOptions().timeZone;
+document.getElementById("loginForm").addEventListener(
+  "submit",
+  function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    if (username.trim() && password.trim()) {
+      document.getElementById("loginScreen").style.display = "none";
+      document.getElementById("dashboard").style.display = "block";
+    }
+  }
+);
+
+function logout() {
+  document.getElementById("dashboard").style.display = "none";
+  document.getElementById("loginScreen").style.display = "flex";
+  document.getElementById("loginForm").reset();
 }
-updateLocalTime();
-setInterval(updateLocalTime,1000);
+
+function demoAction(service) {
+  alert(service + " is a sample feature only.");
+}
 </script>
 
 </body>
 </html>
+      
